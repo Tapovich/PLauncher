@@ -27,8 +27,8 @@ ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 # Telegram
-TELEGRAM_BOT_TOKEN=8289161302:AAEgbE94hvjtFUUAKoDA2K2VOidRoeNz4Z0
-ADMIN_CHAT_ID=-5009682632
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+ADMIN_CHAT_ID=your_admin_chat_id_here
 
 # Anthropic Claude
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
