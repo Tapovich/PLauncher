@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Telegram Light Theme (default) */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 239 84% 67%; /* #6366F1 - Indigo */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%; /* #F1F3F4 */
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%; /* #ef4444 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 239 84% 67%;
+
+    --radius: 8px;
+
+    /* Success color */
+    --success: 142 71% 45%; /* #10B981 - Emerald */
+    --success-foreground: 0 0% 100%;
+
+    /* Warning color */
+    --warning: 38 92% 50%; /* #F59E0B - Amber */
+    --warning-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    /* Telegram Dark Theme */
+    --background: 220 17% 20%; /* #1F2937 */
+    --foreground: 0 0% 100%;
+
+    --card: 220 17% 20%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 17% 20%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 26% 14%; /* #111827 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 26% 14%;
+    --muted-foreground: 220 9% 68%;
+
+    --accent: 239 68% 73%; /* Lighter indigo for dark mode */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 73% 71%; /* Lighter red for dark mode */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 17% 26%;
+    --input: 220 17% 26%;
+    --ring: 239 68% 73%;
+
+    --success: 142 71% 55%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 60%;
+    --warning-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ensure minimum font size for Telegram */
+  html {
+    font-size: 16px;
+  }
+
+  /* 8pt grid system helpers */
+  .spacing-1 { @apply p-1; } /* 8px */
+  .spacing-2 { @apply p-2; } /* 16px */
+  .spacing-3 { @apply p-3; } /* 24px */
+  .spacing-4 { @apply p-4; } /* 32px */
+
+  /* Safe area support for iOS */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Telegram-specific adjustments */
+  .telegram-bg {
+    @apply bg-background;
+  }
+
+  .telegram-text {
+    @apply text-foreground;
+  }
+
+  /* Touch-friendly minimum sizes */
+  .touch-target {
+    @apply min-h-touch min-w-touch;
+  }
+
+  /* Disable text selection for better mobile feel */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Smooth scrolling */
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  .gradient-success {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--primary)) 100%);
+  }
+
+  /* Toast animations */
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out-to-top {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-in {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  .slide-in-from-top {
+    animation-name: slide-in-from-top;
+  }
+
+  .slide-in-from-bottom {
+    animation-name: slide-in-from-bottom;
+  }
+
+  .zoom-in {
+    animation-name: zoom-in;
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
